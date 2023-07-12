@@ -1,0 +1,31 @@
+2023.07.12 11:19:52 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.07.12 11:19:53 WARN  web[][o.s.p.ProcessEntryPoint] Fail to start Web Server
+java.lang.IllegalStateException: Fail to create or clean-up directory /opt/sonarqube/data/web/deploy
+	at org.sonar.server.app.TomcatContexts.addStaticDir(TomcatContexts.java:84)
+	at org.sonar.server.app.TomcatContexts.configure(TomcatContexts.java:59)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:67)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.nio.file.AccessDeniedException: /opt/sonarqube/data/web/deploy/plugins/index.txt
+	at java.base/sun.nio.fs.UnixException.translateToIOException(Unknown Source)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.implDelete(Unknown Source)
+	at java.base/sun.nio.fs.AbstractFileSystemProvider.delete(Unknown Source)
+	at java.base/java.nio.file.Files.delete(Unknown Source)
+	at org.sonar.core.util.FileUtils$DeleteRecursivelyFileVisitor.visitFile(FileUtils.java:227)
+	at org.sonar.core.util.FileUtils$DeleteRecursivelyFileVisitor.visitFile(FileUtils.java:222)
+	at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+	at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+	at org.sonar.core.util.FileUtils.deleteDirectoryImpl(FileUtils.java:162)
+	at org.sonar.core.util.FileUtils$CleanDirectoryFileVisitor.visitFile(FileUtils.java:206)
+	at org.sonar.core.util.FileUtils$CleanDirectoryFileVisitor.visitFile(FileUtils.java:192)
+	at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+	at org.sonar.core.util.FileUtils.cleanDirectoryImpl(FileUtils.java:149)
+	at org.sonar.core.util.FileUtils.cleanDirectory(FileUtils.java:89)
+	at org.sonar.server.app.TomcatContexts$Fs.createOrCleanupDir(TomcatContexts.java:123)
+	at org.sonar.server.app.TomcatContexts.addStaticDir(TomcatContexts.java:82)
+	... 6 common frames omitted
+2023.07.12 11:19:53 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
