@@ -1,5 +1,4 @@
-@Library('name-echo')
-
+library 'name-echo'
 pipeline {
   agent any
   stages {
