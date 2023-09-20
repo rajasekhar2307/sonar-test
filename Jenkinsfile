@@ -5,7 +5,7 @@ pipeline {
     stage("Run FE") {
       steps {
         echo "${GIT_BRANCH}"
-        hello 'a' 'ab' 'c'
+        hello("a", "b", "c")
       }
     }
   }
